@@ -1,0 +1,64 @@
+# Projeto: Sistema Multiagente para Atendimento de Solicitações Comerciais
+
+## 1. Diagrama de Workflow dos Agentes
+
+- Sua arquitetura deve conter até **cinco agentes**, cada um com responsabilidades **claras e não sobrepostas**.
+- Exemplo de agentes:
+  - **Orquestrador:** Delegação de tarefas e gerenciamento do fluxo geral.
+  - **Gestão de Estoque:** Verifica níveis, avalia necessidade de reposição, consulta disponibilidade.
+  - **Cotação:** Gera preços, analisa descontos e histórico de cotações.
+  - **Finalização de Vendas:** Processa pedidos e atualiza o banco de dados.
+- O **diagrama** precisa ilustrar a lógica de orquestração e o fluxo de dados entre agentes.
+- Interações com ferramentas específicas devem ser mostradas (por exemplo, agente de cotação utilizando funções para buscar histórico ou gerar relatórios).
+
+## 2. Implementação do Sistema Multiagente
+
+- As funcionalidades dos agentes no código devem corresponder ao diagrama submetido.
+- Inclua um agente **orquestrador** para delegação e gerenciamento.
+- Implemente agentes/trabalhadores distintos para:
+  - Gestão de estoque
+  - Geração de cotações
+  - Finalização da venda
+- Utilize um dos frameworks recomendados (**smolagents**, **pydantic-ai**, ou **npcsh**) para orquestrar os agentes.
+- Defina as ferramentas dos agentes utilizando as seguintes funções do starter code:
+  - `create_transaction`
+  - `get_all_inventory`
+  - `get_stock_level`
+  - `get_supplier_delivery_date`
+  - `get_cash_balance`
+  - `generate_financial_report`
+  - `search_quote_history`
+- Cada ferramenta deve ser vinculada de maneira adequada ao agente responsável por sua função.
+
+## 3. Avaliação e Reflexão
+
+- Avalie o sistema usando **quote_requests_sample.csv**.
+- Submeta os resultados dos testes, preferencialmente em **test_results.csv**.
+  - Mínimo de três solicitações que alterem o saldo de caixa.
+  - Mínimo de três solicitações de cotação atendidas com sucesso.
+  - Nem todas as solicitações devem ser atendidas, com justificativa para as recusas (ex: estoque insuficiente).
+- Relatório de reflexão deve conter:
+  - Explicação detalhada do diagrama workflow, papéis dos agentes e justificativa pelas escolhas arquiteturais.
+  - Discussão dos resultados dos testes, identificando pontos fortes do sistema e possíveis melhorias.
+  - Apresentação de pelo menos duas sugestões concretas para aprimorar o sistema (ex: novas funcionalidades ou eficiência).
+
+## 4. Boas Práticas de Mercado
+
+- **Transparência nas saídas**: Informar ao cliente os motivos das decisões (ex: por que o preço é aquele, motivo de recusa).
+- **Proteção de dados**: Não exibir informações confidenciais da empresa nem dados pessoais além do necessário.
+- **Clareza e Justificativa**: Explicar descontos aplicados ou motivos de não atendimento do pedido.
+- **Código**: Seu código deve ser modular, legível e devidamente comentado.
+  - Nomes de variáveis e funções claros, em snake_case.
+  - Uso apropriado de docstrings e comentários explicativos.
+  - Separação lógica das funções em módulos.
+
+## 5. Sugestões para Destacar o Projeto
+
+- Criar um **agente cliente** capaz de negociar com o sistema multiagente.
+- Implementar uma **animação de terminal** mostrando como cada pedido é processado pelos agentes.
+- Adicionar um agente **consultor de negócios** que analise transações e recomende estratégias para aumentar eficiência e receita.
+
+***
+
+**Este documento contempla todos os requisitos e boas práticas, e orienta de maneira clara e detalhada a implementação, avaliação e documentação do seu projeto multiagente. Para exportar, copie o conteúdo e salve como `.md` (Markdown), `.pdf`, ou outro formato desejado, pronto para submissão.**
+

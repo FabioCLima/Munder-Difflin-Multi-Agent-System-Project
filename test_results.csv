@@ -1,0 +1,131 @@
+request_id,timestamp,request_text,agent_type,response,success,cash_impact,error_message
+inventory_1,2025-10-24T10:41:27.330687,What products do you have available?,inventory,"Here are the products currently available in our inventory:
+
+- **100 lb cover stock:** ✅ IN STOCK (636 units available)
+- **80 lb text paper:** ✅ IN STOCK (249 units available)
+- **A4 paper:** ✅ IN STOCK (272 units available)
+- **Banner paper:** ✅ IN STOCK (793 units available)
+- **Butcher paper:** ✅ IN STOCK (365 units available)
+- **Cardstock:** ✅ IN STOCK (595 units available)
+- **Colored paper:** ✅ IN STOCK (788 units available)
+- **Crepe paper:** ✅ IN STOCK (234 units available)
+- **Glossy paper:** ✅ IN STOCK (587 units available)
+- **Invitation cards:** ✅ IN STOCK (526 units available)
+- **Kraft paper:** ✅ IN STOCK (493 units available)
+- **Large poster paper (24x36 inches):** ✅ IN STOCK (699 units available)
+- **Paper plates:** ✅ IN STOCK (748 units available)
+- **Patterned paper:** ✅ IN STOCK (548 units available)
+- **Photo paper:** ✅ IN STOCK (423 units available)
+- **Presentation folders:** ✅ IN STOCK (389 units available)
+- **Rolls of banner paper (36-inch width):** ✅ IN STOCK (546 units available)
+- **Table covers:** ✅ IN STOCK (736 units available)
+
+If you need more information about any specific product or if you want to check stock levels for a particular item, feel free to ask!",True,0.0,
+inventory_2,2025-10-24T10:41:29.238730,Do you have A4 paper in stock?,inventory,✅ We have 272 units of A4 paper in stock.,True,0.0,
+inventory_3,2025-10-24T10:41:31.482648,Which products are running low on stock?,inventory,All inventory items are currently at or above minimum stock levels. There are no products running low on stock at this time.,True,0.0,
+quoting_1,2025-10-24T10:41:37.453379,I need a quote for 50 sheets of A4 paper,quoting,"Here is your quote for 50 units of A4 paper:
+
+📋 **Quote #Q20251024104133**
+
+- **Product:** A4 paper
+- **Quantity:** 50 units
+- **Unit Price:** $0.05
+
+**Price Breakdown:**
+- **Subtotal:** $2.50
+- **Discount (2%):** -$0.05
+- **TOTAL:** $2.45
+
+**Validity:** This quote is valid until **November 23, 2025**.
+
+✅ The quote has been saved and can be referenced with #Q20251024104133. If you need any further assistance or changes, just let me know!",True,0.0,
+quoting_2,2025-10-24T10:41:41.550782,Can you provide a quote for 200 sheets of cardstock?,quoting,"Here is your quote for 200 units of Cardstock:
+
+📋 **Quote #Q20251024104138**
+
+- **Product:** Cardstock
+- **Quantity:** 200 units
+- **Unit Price:** $0.15
+
+**Subtotal:** $30.00  
+**Discount (5%):** -$1.50  
+**TOTAL:** $28.50  
+
+**Validity Period:** This quote is valid until **November 23, 2025**.
+
+✅ The quote has been saved for your reference. If you need any further assistance or adjustments, feel free to ask!",True,0.0,
+quoting_3,2025-10-24T10:41:44.288038,I need pricing for 1000 sheets of glossy paper for a large event,quoting,"It seems that the requested quantity of 1000 units of Glossy paper exceeds the current stock of 587 units. Unfortunately, I cannot generate a quote without sufficient product availability.
+
+If you would like to adjust your quantity or inquire about an alternative product, please let me know!",False,0.0,
+sales_1,2025-10-24T10:41:48.160216,I want to place an order for 25 sheets of A4 paper,sales,"✅ **ORDER CONFIRMED**
+
+💵 **Transaction #S20251024104145** ✅  
+- Type: SALES  
+- Product: A4 paper  
+- Quantity: 25 units  
+- Unit Price: $0.05  
+- **Total Amount: $1.25**  
+
+Date: 2025-10-24 10:41:45  
+Status: COMPLETED  
+  
+Updated Stock Level: 247 units (was 272)
+
+---
+
+Thank you for your purchase! Your order will be processed immediately. If you need any further assistance, feel free to ask!",True,1.25,
+sales_2,2025-10-24T10:41:56.466243,Please process an order for 100 sheets of cardstock,sales,"**ORDER CONFIRMED**  
+  
+💰 **Transaction #S20251024104149** ✅  
+- **Type**: SALES  
+- **Product**: Cardstock  
+- **Quantity**: 100 units  
+- **Unit Price**: $0.15  
+- **Total Amount**: $15.00  
+
+**Date**: 2025-10-24 10:41:49  
+**Status**: COMPLETED  
+
+**Updated Stock Level**: 495 units (was 595)
+
+Thank you for your purchase! Your order will be processed immediately. Should you need further assistance, please don't hesitate to ask.",True,15.0,
+sales_3,2025-10-24T10:42:01.167935,I need to buy 500 sheets of glossy paper,sales,"Your order has been successfully processed!
+
+### **Order Confirmation**
+- **Transaction ID:** S20251024104158
+- **Product:** Glossy paper
+- **Quantity:** 500 units
+- **Unit Price:** $0.20
+- **Total Amount:** $100.00
+- **Date:** 2025-10-24 10:41:58
+- **Status:** COMPLETED
+
+**Updated Stock Level:** 87 units (was 587). 
+
+🔔 **Auto-reordering triggered:** Stock dropped to 87 units, which is below the minimum level of 147 units.
+
+Thank you for your purchase! Your order will be processed immediately. If you need further assistance, feel free to ask!",True,100.0,
+orchestrator_1,2025-10-24T10:42:02.323704,"I need to check inventory, get a quote, and place an order for A4 paper",orchestrator,"Certainly! Let's start by checking the inventory and getting a quote for A4 paper. Once we have that information, we can proceed with placing the order.
+
+I'll handle the inventory check and quote request simultaneously. Could you please specify the quantity you have in mind, so we can get an accurate price quote?",True,0.0,
+orchestrator_2,2025-10-24T10:42:03.598999,Can you help me with a large order for our conference?,orchestrator,"Of course! I can assist you with that. Could you please provide the details of the products you're interested in purchasing, such as the product names and the quantities you need? Additionally, if you have any specific price or quote inquiries, let me know so I can assist you accordingly.",True,0.0,
+orchestrator_3,2025-10-24T10:42:04.769882,I need paper supplies for an event - what do you recommend?,orchestrator,"Could you please provide some details on the event, such as the number of attendees and the types of paper products you might need (e.g., printing paper, napkins, etc.)? This will help me to make suitable recommendations for your event.",True,0.0,
+edge_cases_1,2025-10-24T10:42:13.655886,I want to buy 1 million sheets of paper,orchestrator,"It seems that I need a bit more information to assist you properly:
+
+1. **Inventory Check**: Could you please specify the type of paper you need? For example, are you interested in Premium Copy Paper, Standard Copy Paper, or any other specific product?
+
+2. **Price Quote**: The system couldn't find the product ""1 million sheets of paper"" directly. Could you provide the correct product name, or let me know if there are specific attributes of the paper you're looking for (such as weight, quality, brand)?
+
+Once I have this information, I can assist you further. Thank you!",False,0.0,
+edge_cases_2,2025-10-24T10:42:18.098549,Do you have unicorn paper?,orchestrator,"Unfortunately, we do not have any products that match the term ""unicorn paper."" If you are looking for a specific type of paper or product, please let me know and I can assist you in finding similar items or alternatives from our catalog.",False,0.0,
+edge_cases_3,2025-10-24T10:42:20.062204,I need paper delivered yesterday,orchestrator,"I understand that you need paper promptly. It sounds like you wish to place an urgent order. Let's proceed with that.
+
+Can you please specify the type of paper and the quantity you need so I can assist you further with placing the order?",False,0.0,
+reorder_1,2025-10-24T10:42:23.439285,Check and process reorders,reordering,"The automatic reordering process has been completed successfully. Here are the details:
+
+- **Orders Placed:** 1
+- **Product Ordered:** Glossy paper
+- **Quantity Ordered:** 133 units
+- **Total Investment:** $26.60
+
+All inventory levels have been restored to the safety stock. If you need any further assistance, feel free to ask!",True,0.0,

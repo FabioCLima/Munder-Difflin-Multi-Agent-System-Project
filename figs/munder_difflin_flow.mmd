@@ -1,0 +1,48 @@
+---
+config:
+  theme: neo
+  look: neo
+---
+flowchart TB
+    Customer["👤 Customer Request"] -- Text Request --> Orchestrator["🎭 ORCHESTRATOR AGENT<br>Router &amp; Coordinator"]
+    Orchestrator -- Inventory Query --> InventoryAgent["📦 INVENTORY AGENT<br>Stock Management"]
+    Orchestrator -- Quote Request --> QuotingAgent["💰 QUOTING AGENT<br>Price Calculation"]
+    Orchestrator -- Purchase Order --> SalesAgent["🤝 SALES AGENT<br>Order Fulfillment"]
+    InventoryAgent --> CheckInventory["🔍 check_inventory_tool"] & CheckLowStock["⚠️ check_low_stock_tool"] & SearchItem["🔎 search_item_tool"] & Orchestrator
+    CheckInventory --> Database[("🗄️ SQLite Database<br>munder_difflin.db")]
+    CheckLowStock --> Database
+    SearchItem --> Database
+    QuotingAgent --> GetQuoteHistory["📚 get_quote_history_tool"] & CalculatePrice["🧮 calculate_pricing_tool"] & Orchestrator
+    QuotingAgent -. Validate Stock .-> InventoryAgent
+    GetQuoteHistory --> Database
+    CalculatePrice --> Database
+    SalesAgent --> CheckDelivery["📅 check_delivery_timeline_tool"] & FulfillOrder["✅ fulfill_order_tool"] & Orchestrator
+    SalesAgent -. Validate Availability .-> InventoryAgent
+    FulfillOrder --> Database
+    SalesAgent -. Trigger .-> ReorderProcess["🔄 REORDERING PROCESS<br>Auto-triggered"]
+    ReorderProcess --> CheckLowStock & AddStock["📥 add_stock_tool"]
+    AddStock --> Database
+    Orchestrator --> Response["📤 Response to Customer"]
+    Response --> Customer
+     Customer:::customerStyle
+     Orchestrator:::orchestratorStyle
+     InventoryAgent:::agentStyle
+     QuotingAgent:::agentStyle
+     SalesAgent:::agentStyle
+     CheckInventory:::toolStyle
+     CheckLowStock:::toolStyle
+     SearchItem:::toolStyle
+     Database:::dbStyle
+     GetQuoteHistory:::toolStyle
+     CalculatePrice:::toolStyle
+     CheckDelivery:::toolStyle
+     FulfillOrder:::toolStyle
+     ReorderProcess:::processStyle
+     AddStock:::toolStyle
+     Response:::customerStyle
+    classDef customerStyle fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+    classDef orchestratorStyle fill:#fff9c4,stroke:#f57f17,stroke-width:3px
+    classDef agentStyle fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    classDef toolStyle fill:#ffccbc,stroke:#d84315,stroke-width:1px
+    classDef dbStyle fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef processStyle fill:#b2dfdb,stroke:#00695c,stroke-width:2px,stroke-dasharray: 5 5

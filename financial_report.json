@@ -1,0 +1,123 @@
+{
+  "as_of_date": "2025-01-15",
+  "cash_balance": 45059.7,
+  "inventory_value": 4940.299999999999,
+  "total_assets": 50000.0,
+  "inventory_summary": [
+    {
+      "item_name": "Paper plates",
+      "stock": 748.0,
+      "unit_price": 0.1,
+      "value": 74.8
+    },
+    {
+      "item_name": "100 lb cover stock",
+      "stock": 636.0,
+      "unit_price": 0.5,
+      "value": 318.0
+    },
+    {
+      "item_name": "Glossy paper",
+      "stock": 587.0,
+      "unit_price": 0.2,
+      "value": 117.4
+    },
+    {
+      "item_name": "Rolls of banner paper (36-inch width)",
+      "stock": 546.0,
+      "unit_price": 2.5,
+      "value": 1365.0
+    },
+    {
+      "item_name": "Photo paper",
+      "stock": 423.0,
+      "unit_price": 0.25,
+      "value": 105.75
+    },
+    {
+      "item_name": "Cardstock",
+      "stock": 595.0,
+      "unit_price": 0.15,
+      "value": 89.25
+    },
+    {
+      "item_name": "Colored paper",
+      "stock": 788.0,
+      "unit_price": 0.1,
+      "value": 78.80000000000001
+    },
+    {
+      "item_name": "80 lb text paper",
+      "stock": 249.0,
+      "unit_price": 0.4,
+      "value": 99.60000000000001
+    },
+    {
+      "item_name": "Large poster paper (24x36 inches)",
+      "stock": 699.0,
+      "unit_price": 1.0,
+      "value": 699.0
+    },
+    {
+      "item_name": "Table covers",
+      "stock": 736.0,
+      "unit_price": 1.5,
+      "value": 1104.0
+    },
+    {
+      "item_name": "Butcher paper",
+      "stock": 365.0,
+      "unit_price": 0.1,
+      "value": 36.5
+    },
+    {
+      "item_name": "Kraft paper",
+      "stock": 493.0,
+      "unit_price": 0.1,
+      "value": 49.300000000000004
+    },
+    {
+      "item_name": "Banner paper",
+      "stock": 793.0,
+      "unit_price": 0.3,
+      "value": 237.89999999999998
+    },
+    {
+      "item_name": "Presentation folders",
+      "stock": 389.0,
+      "unit_price": 0.5,
+      "value": 194.5
+    },
+    {
+      "item_name": "Patterned paper",
+      "stock": 548.0,
+      "unit_price": 0.15,
+      "value": 82.2
+    },
+    {
+      "item_name": "A4 paper",
+      "stock": 272.0,
+      "unit_price": 0.05,
+      "value": 13.600000000000001
+    },
+    {
+      "item_name": "Invitation cards",
+      "stock": 526.0,
+      "unit_price": 0.5,
+      "value": 263.0
+    },
+    {
+      "item_name": "Crepe paper",
+      "stock": 234.0,
+      "unit_price": 0.05,
+      "value": 11.700000000000001
+    }
+  ],
+  "top_selling_products": [
+    {
+      "item_name": null,
+      "total_units": null,
+      "total_revenue": 50000.0
+    }
+  ]
+}
