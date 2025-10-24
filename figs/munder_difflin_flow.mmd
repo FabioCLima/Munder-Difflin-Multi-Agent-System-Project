@@ -3,46 +3,108 @@ config:
   theme: neo
   look: neo
 ---
-flowchart TB
-    Customer["👤 Customer Request"] -- Text Request --> Orchestrator["🎭 ORCHESTRATOR AGENT<br>Router &amp; Coordinator"]
-    Orchestrator -- Inventory Query --> InventoryAgent["📦 INVENTORY AGENT<br>Stock Management"]
-    Orchestrator -- Quote Request --> QuotingAgent["💰 QUOTING AGENT<br>Price Calculation"]
-    Orchestrator -- Purchase Order --> SalesAgent["🤝 SALES AGENT<br>Order Fulfillment"]
-    InventoryAgent --> CheckInventory["🔍 check_inventory_tool"] & CheckLowStock["⚠️ check_low_stock_tool"] & SearchItem["🔎 search_item_tool"] & Orchestrator
-    CheckInventory --> Database[("🗄️ SQLite Database<br>munder_difflin.db")]
-    CheckLowStock --> Database
-    SearchItem --> Database
-    QuotingAgent --> GetQuoteHistory["📚 get_quote_history_tool"] & CalculatePrice["🧮 calculate_pricing_tool"] & Orchestrator
-    QuotingAgent -. Validate Stock .-> InventoryAgent
-    GetQuoteHistory --> Database
-    CalculatePrice --> Database
-    SalesAgent --> CheckDelivery["📅 check_delivery_timeline_tool"] & FulfillOrder["✅ fulfill_order_tool"] & Orchestrator
-    SalesAgent -. Validate Availability .-> InventoryAgent
-    FulfillOrder --> Database
-    SalesAgent -. Trigger .-> ReorderProcess["🔄 REORDERING PROCESS<br>Auto-triggered"]
-    ReorderProcess --> CheckLowStock & AddStock["📥 add_stock_tool"]
-    AddStock --> Database
-    Orchestrator --> Response["📤 Response to Customer"]
-    Response --> Customer
-     Customer:::customerStyle
-     Orchestrator:::orchestratorStyle
-     InventoryAgent:::agentStyle
-     QuotingAgent:::agentStyle
-     SalesAgent:::agentStyle
-     CheckInventory:::toolStyle
-     CheckLowStock:::toolStyle
-     SearchItem:::toolStyle
-     Database:::dbStyle
-     GetQuoteHistory:::toolStyle
-     CalculatePrice:::toolStyle
-     CheckDelivery:::toolStyle
-     FulfillOrder:::toolStyle
-     ReorderProcess:::processStyle
-     AddStock:::toolStyle
-     Response:::customerStyle
+---
+config:
+  theme: neo
+  look: neo
+---
+graph TB
+    %% Estilos
     classDef customerStyle fill:#e1f5ff,stroke:#01579b,stroke-width:2px
     classDef orchestratorStyle fill:#fff9c4,stroke:#f57f17,stroke-width:3px
     classDef agentStyle fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
     classDef toolStyle fill:#ffccbc,stroke:#d84315,stroke-width:1px
     classDef dbStyle fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     classDef processStyle fill:#b2dfdb,stroke:#00695c,stroke-width:2px,stroke-dasharray: 5 5
+    
+    %% Nós principais
+    Customer[👤 Customer Request]
+    Orchestrator[🎭 ORCHESTRATOR AGENT<br/>Router & Coordinator]
+    
+    %% Agentes
+    InventoryAgent[📦 INVENTORY AGENT<br/>Stock Management]
+    QuotingAgent[💰 QUOTING AGENT<br/>Price Calculation]
+    SalesAgent[🤝 SALES AGENT<br/>Order Fulfillment]
+    
+    %% Process
+    ReorderProcess[🔄 REORDERING AGENT<br/>Auto-triggered]
+    
+    %% === INVENTORY AGENT TOOLS (EXACT FUNCTION NAMES) ===
+    GetAllInventory[🔍 get_all_inventory<br/>Returns dict of all items with stock > 0]
+    GetStockLevel[📊 get_stock_level<br/>Returns DataFrame with specific item stock]
+    
+    %% === QUOTING AGENT TOOLS (EXACT FUNCTION NAMES) ===
+    SearchQuoteHistory[📚 search_quote_history<br/>Find similar quotes by keywords]
+    GetItemPrice[💵 Query inventory.unit_price<br/>Get base price from inventory table]
+    CalculateBulkDiscount[🧮 Custom Logic<br/>Apply bulk discount based on order_size]
+    
+    %% === SALES AGENT TOOLS (EXACT FUNCTION NAMES) ===
+    CreateTransactionSales[✅ create_transaction<br/>type='sales' - records customer purchase]
+    GetCashBalance[💰 get_cash_balance<br/>Calculate current cash from transactions]
+    GenerateFinancialReport[📊 generate_financial_report<br/>Complete financial status report]
+    
+    %% === REORDERING AGENT TOOLS (EXACT FUNCTION NAMES) ===
+    CreateTransactionStock[📥 create_transaction<br/>type='stock_orders' - records supplier purchase]
+    GetSupplierDeliveryDate[📅 get_supplier_delivery_date<br/>Calculate supplier delivery ETA]
+    CheckLowStock[⚠️ Custom Logic<br/>Compare current_stock vs min_stock_level]
+    
+    %% Database
+    Database[(🗄️ SQLite Database<br/>munder_difflin.db<br/><br/>Tables:<br/>• inventory<br/>• transactions<br/>• quotes<br/>• quote_requests)]
+    
+    %% Response
+    Response[📤 Response to Customer]
+    
+    %% ========= FLUXO PRINCIPAL =========
+    Customer -->|Text Request| Orchestrator
+    
+    Orchestrator -->|Inventory Query| InventoryAgent
+    Orchestrator -->|Quote Request| QuotingAgent
+    Orchestrator -->|Purchase Order| SalesAgent
+    
+    %% ========= INVENTORY AGENT FLOW =========
+    InventoryAgent --> GetAllInventory
+    InventoryAgent --> GetStockLevel
+    GetAllInventory --> Database
+    GetStockLevel --> Database
+    
+    %% ========= QUOTING AGENT FLOW =========
+    QuotingAgent --> SearchQuoteHistory
+    QuotingAgent --> GetItemPrice
+    QuotingAgent --> CalculateBulkDiscount
+    QuotingAgent -.->|Validate Stock| InventoryAgent
+    SearchQuoteHistory --> Database
+    GetItemPrice --> Database
+    
+    %% ========= SALES AGENT FLOW =========
+    SalesAgent --> CreateTransactionSales
+    SalesAgent --> GetCashBalance
+    SalesAgent --> GenerateFinancialReport
+    SalesAgent -.->|Validate Availability| InventoryAgent
+    CreateTransactionSales --> Database
+    GetCashBalance --> Database
+    GenerateFinancialReport --> Database
+    SalesAgent -.->|Trigger After Sale| ReorderProcess
+    
+    %% ========= REORDERING AGENT FLOW =========
+    ReorderProcess --> CheckLowStock
+    ReorderProcess --> CreateTransactionStock
+    ReorderProcess --> GetSupplierDeliveryDate
+    ReorderProcess --> GetCashBalance
+    CheckLowStock --> Database
+    CreateTransactionStock --> Database
+    
+    %% ========= RETURN FLOW =========
+    InventoryAgent --> Orchestrator
+    QuotingAgent --> Orchestrator
+    SalesAgent --> Orchestrator
+    Orchestrator --> Response
+    Response --> Customer
+    
+    %% Aplicar estilos
+    class Customer customerStyle
+    class Orchestrator orchestratorStyle
+    class InventoryAgent,QuotingAgent,SalesAgent agentStyle
+    class GetAllInventory,GetStockLevel,SearchQuoteHistory,GetItemPrice,CalculateBulkDiscount,CreateTransactionSales,GetCashBalance,GenerateFinancialReport,CreateTransactionStock,GetSupplierDeliveryDate,CheckLowStock toolStyle
+    class Database dbStyle
+    class ReorderProcess processStyle
+    class Response customerStyle
